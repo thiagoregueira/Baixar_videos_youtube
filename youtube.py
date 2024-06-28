@@ -11,14 +11,21 @@ def get_video_streams(url):
 
 
 def download_video(stream, output_path):
+    # Ensure the output path exists
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
     stream.download(output_path)
 
 
 def get_download_path():
     if os.name == 'nt':  # Windows
-        return os.path.join(os.path.expanduser('~'), 'Downloads')
+        download_path = os.path.join(os.path.expanduser('~'), 'Downloads')
     else:  # Linux and other Unix-like systems
-        return os.path.join(os.path.expanduser('~'), 'Downloads')
+        download_path = os.path.join(os.path.expanduser('~'), 'Downloads')
+
+    # Debugging message to check the download path
+    print(f'Download path: {download_path}')
+    return download_path
 
 
 st.title('YouTube Video Downloader')
