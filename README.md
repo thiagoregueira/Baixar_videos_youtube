@@ -38,6 +38,7 @@ Este é um aplicativo web simples desenvolvido com Python e Streamlit que permit
 4. Execute o aplicativo:
     
     streamlit run youtube.py
+```
 
 
 ## Contribuição
