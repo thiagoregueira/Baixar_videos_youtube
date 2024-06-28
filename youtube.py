@@ -18,7 +18,7 @@ def get_download_path():
     if os.name == 'nt':  # Windows
         return os.path.join(os.path.expanduser('~'), 'Downloads')
     else:  # Linux and other Unix-like systems
-        return os.path.join(os.path.expanduser('~'), 'Downloads')
+        return os.path.join(os.path('~'), 'Downloads')
 
 
 st.title('YouTube Video Downloader')
