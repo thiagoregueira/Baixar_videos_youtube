@@ -18,14 +18,22 @@ def download_video(stream, output_path):
 
 
 def get_download_path():
+    username = get_username()
     if os.name == 'nt':  # Windows
-        download_path = os.path.join(os.path.expanduser('~'), 'Downloads')
+        download_path = os.path.join('C:\\Users', username, 'Downloads')
     else:  # Linux and other Unix-like systems
-        download_path = os.path.join(os.path.expanduser('~'), 'Downloads')
+        download_path = os.path.join('/home', username, 'Downloads')
 
     # Debugging message to check the download path
     print(f'Download path: {download_path}')
     return download_path
+
+
+def get_username():
+    if os.name == 'nt':  # Windows
+        return os.getenv('USERNAME')
+    else:  # Unix-like systems (Linux, macOS)
+        return os.getenv('USER')
 
 
 st.title('YouTube Video Downloader')
@@ -54,8 +62,9 @@ if url:
             with st.spinner('Downloading...'):
                 download_path = get_download_path()
                 download_video(selected_stream, download_path)
+                username = get_username()
                 st.success(
-                    f'Download completed! File saved to {download_path}'
+                    f'Download completed! File saved to {download_path}. User: {username}'  # noqa: E501
                 )
     except Exception as e:
         st.error(f'Error: {e}')
