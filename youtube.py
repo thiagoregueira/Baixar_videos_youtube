@@ -18,10 +18,10 @@ def download_video(stream):
     return buffer
 
 
-st.title('YouTube Video Downloader')
+st.title('YouTube Download Videos')
 
 # Input URL
-url = st.text_input('Enter YouTube URL:')
+url = st.text_input('Digite o endereço do vídeo:')
 
 if url:
     try:
@@ -31,7 +31,7 @@ if url:
         ]
 
         # Select quality
-        quality = st.selectbox('Select Quality:', quality_options)
+        quality = st.selectbox('Selecione a qualidade:', quality_options)
 
         # Find the selected stream
         selected_stream = next(
@@ -40,7 +40,7 @@ if url:
             if f'{stream.resolution} - {stream.fps}fps' == quality
         )
 
-        if st.button('Download'):
+        if st.button('Download Buffer'):
             with st.spinner('Downloading...'):
                 video_buffer = download_video(selected_stream)
                 st.download_button(
@@ -50,7 +50,7 @@ if url:
                     mime='video/mp4',
                 )
                 st.success(
-                    'Download ready! Click the button above to download the video.'  # noqa: E501
+                    'Download pronto! Clique no botão acima para baixar o vídeo.'  # noqa: E501
                 )
     except Exception as e:
         st.error(f'Error: {e}')
