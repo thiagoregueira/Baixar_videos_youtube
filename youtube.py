@@ -5,7 +5,7 @@ from pytube import YouTube
 
 st.title('YouTube Video Download')
 
-video_url = st.text_input('Insira o link do vídeo do YouTube')
+video_url = st.text_input('Insira o link do vídeo do YouTube:')
 
 
 def download_video(url):
